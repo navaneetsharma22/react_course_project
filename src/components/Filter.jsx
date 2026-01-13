@@ -1,7 +1,16 @@
 import React from "react";
 
-const Filter =() =>{
+const Filter = (props) =>{
+    let filterData = props.filterData;
+    return(
+        filterData.map((data) => (
+            <button key={data.title}> {data.title}</button>
+        ))
+
+    )
+
+
 
 }
 
-export default Filter;  
+export default Filter;   

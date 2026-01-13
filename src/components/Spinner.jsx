@@ -1,7 +1,14 @@
 import React from "react";
+import './Spinner.css';
+const Spinner = () => {
+    return(
+        <div>
+            <div className="spinner"> </div>
+            <p> Loading....</p>
 
-const Card = () => {
+        </div>
+    )
 
 };
 
-export default Card;
+export default Spinner;

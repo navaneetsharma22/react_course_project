@@ -1,28 +1,43 @@
-import { useState } from 'react'
-import Navbar from './components/Navbar'
-import Filter from './components/Filter'
-import Cards from './components/Cards'
-import './App.css'
+import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import Filter from "./components/Filter";
+import Cards from "./components/Cards";
+import "./App.css";
+import { apiUrl, filterData } from "./data";
+import { toast, Toaster } from "react-hot-toast";
+import Spinner from "./components/Spinner";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [courses, setCourses] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  async function fetchData() {
+    setLoading(true);
+    try {
+      const response = await fetch(apiUrl);
+      const output = await response.json();
+      setCourses(output.data);
+    } catch (error) {
+      toast.error("Error fetching data");
+    }
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
-    <div>
-      <Navbar/>
-    </div>
+      <Toaster position="top-center" />
+      <Navbar />
+      <Filter filterData={filterData} />
 
-    <div>
-    <Filter/>
-    </div>
-
-    <div>
-      <Cards/>
-    </div>
-      
+      <div>
+        {loading ? <Spinner /> : <Cards courses={courses} />}
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
