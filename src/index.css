@@ -1,4 +1,6 @@
-.spinner {
+@import "tailwindcss"; 
+ 
+ .spinner {
    width: 56px;
    height: 56px;
    animation: spinner-c601d3 1s infinite;
