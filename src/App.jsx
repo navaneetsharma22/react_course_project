@@ -31,10 +31,15 @@ function App() {
     <>
       <Toaster position="top-center" />
       <Navbar />
-      <Filter filterData={filterData} />
 
-      <div>
-        {loading ? <Spinner /> : <Cards courses={courses} />}
+      <div
+        className="bg-slate-950"
+      >
+        <Filter filterData={filterData} />
+
+        <div className="w-11/12 max-w-300 mx-auto flex flex-wrap justify-center min-h-[50vh] ">
+          {loading ? <Spinner /> : <Cards courses={courses} />}
+        </div>
       </div>
     </>
   );
