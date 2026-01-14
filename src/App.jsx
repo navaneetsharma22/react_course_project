@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/common/nav/Navbar";
 import Filter from "./components/Filter";
 import Cards from "./components/Cards";
 import "./App.css";
