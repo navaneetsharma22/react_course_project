@@ -1,29 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./Card";
 
-function Cards({ courses }) {
+function Cards({ courses, category }) {
 
-  // safety check (VERY IMPORTANT)
+  // safety check
   if (!courses) {
     return <div>Loading...</div>;
   }
 
+  const [likedCourses, setLikedCourses] = useState([]);
+
   function getCourses() {
-    let allCourses = [];
+    // All category
+    if (category === "All") {
+      let allCourses = [];
 
-    Object.values(courses).forEach((array) => {
-      array.forEach((course) => {
-        allCourses.push(course);
+      Object.values(courses).forEach((courseArray) => {
+        courseArray.forEach((course) => {
+          allCourses.push(course);
+        });
       });
-    });
 
-    return allCourses;
+      return allCourses;
+    }
+
+    // Specific category
+    return courses[category] || [];
   }
 
   return (
     <div className="flex flex-wrap justify-center gap-4 mb-4">
       {getCourses().map((course) => (
-        <Card key={course.id} course={course} />
+        <Card
+          key={course.id}
+          course={course}
+          likedCourses={likedCourses}
+          setLikedCourses={setLikedCourses}
+        />
       ))}
     </div>
   );

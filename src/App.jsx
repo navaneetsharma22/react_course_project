@@ -10,6 +10,7 @@ import Spinner from "./components/Spinner";
 function App() {
   const [courses, setCourses] = useState({});
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(filterData[0].title);
 
   async function fetchData() {
     setLoading(true);
@@ -35,10 +36,10 @@ function App() {
       <div
         className="bg-slate-950"
       >
-        <Filter filterData={filterData} />
+        <Filter filterData={filterData} setCategory={setCategory}/>
 
         <div className="w-11/12 max-w-300 mx-auto flex flex-wrap justify-center min-h-[50vh] ">
-          {loading ? <Spinner /> : <Cards courses={courses} />}
+          {loading ? <Spinner /> : <Cards courses={courses} category={category}/>}
         </div>
       </div>
     </>
